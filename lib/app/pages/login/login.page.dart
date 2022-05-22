@@ -85,7 +85,7 @@ class LoginPage extends GetView<LoginController> {
 
   Text title(BuildContext context) {
     return Text(
-      "LA MAGIA DEL CINE EN TUS MANOS",
+      "Cinepolis Gestion",
       softWrap: true,
       maxLines: 2,
       textAlign: TextAlign.center,

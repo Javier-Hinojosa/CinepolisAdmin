@@ -10,14 +10,8 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(() => controller.loading.value
         ? const ProgressPrimary()
-        : SafeArea(
-            child: CustomScrollView(shrinkWrap: true, slivers: [
-              //static widgets
-              SliverList(
-                  delegate: SliverChildListDelegate([
+        : Column(children: [
 
-              ]))
-            ]),
-          ));
+    ],));
   }
 }

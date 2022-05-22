@@ -1,4 +1,7 @@
+import 'package:cinepolis_admin/app/pages/main/home/home.page.dart';
 import 'package:cinepolis_admin/app/utils/msg.utils.dart';
+import 'package:cinepolis_admin/app/widgets/app_bar/simple_app_bar/simple_app_bar.widget.dart';
+import 'package:cinepolis_admin/app/widgets/progress/progress.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'main.controller.dart';
@@ -9,34 +12,20 @@ class MainPage extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: controller.navigationItems.length,
-      child: Scaffold(
+    return Obx(() => controller.loading.value
+        ? const ProgressPrimary()
+        :Scaffold(
+          appBar: SimpleAppBar(
+              title: "Bienvenido ${controller.profile.first.nombres}"),
           body: WillPopScope(
-              onWillPop: () => MsgUtils.exit(
-                  context,
-                  "¿Seguro quieres cerrar la app?",
-                  () => SystemChannels.platform
-                      .invokeMethod('SystemNavigator.pop')),
-              child: TabBarView(
-                children:
-                    controller.navigationItems.map((e) => e.page).toList(),
-              )),
-          bottomNavigationBar: Container(
-              height: 60,
-              color: Theme.of(context).primaryColorLight,
-              padding: const EdgeInsets.only(bottom: 5),
-              child: TabBar(
-                  indicatorColor: Theme.of(context).primaryColorDark,
-                  tabs: controller.navigationItems
-                      .map((e) => Tab(
-                              icon: Tooltip(
-                            message: e.label,
-                            child: Icon(
-                              e.icon,
-                            ),
-                          )))
-                      .toList()))),
+              onWillPop: () =>
+                  MsgUtils.exit(
+                      context,
+                      "¿Seguro quieres cerrar la app?",
+                          () =>
+                          SystemChannels.platform
+                              .invokeMethod('SystemNavigator.pop')),
+              child: const HomePage()))
     );
   }
 }
