@@ -162,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  curved_drawer_fork:
+    dependency: "direct main"
+    description:
+      name: curved_drawer_fork
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1+1"
   dart_style:
     dependency: transitive
     description:
@@ -737,6 +744,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  reactive_forms:
+    dependency: "direct main"
+    description:
+      name: reactive_forms
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "13.0.0"
   rounded_loading_button:
     dependency: "direct main"
     description:
@@ -975,4 +989,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.17.0 <3.0.0"
-  flutter: ">=2.8.1"
+  flutter: ">=3.0.0"

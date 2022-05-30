@@ -37,7 +37,8 @@ class MsgUtils {
               title,
               style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
-            content: Text(message),
+            content: Text(message,
+                style: const TextStyle(color: Colors.white, fontSize: 16)),
             actions: <Widget>[
               _options(context, cancelText, isCancel: false),
               _options(context, acceptText, isCancel: true),

@@ -17,7 +17,10 @@ class LoginPage extends GetView<LoginController> {
         _password(controller.password.value, context)
             .paddingOnly(top: 20, bottom: 30),
         _containButton(context),
-      ]).paddingOnly(top: 10, left: 16, right: 16),
+      ]).paddingOnly(
+          top: 10,
+          left: MediaQuery.of(context).size.width * 0.30,
+          right: MediaQuery.of(context).size.width * 0.30),
     );
   }
 

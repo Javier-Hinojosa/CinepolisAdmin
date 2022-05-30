@@ -1,11 +1,9 @@
 import 'package:cinepolis_admin/app/pages/main/home/home.page.dart';
-import 'package:cinepolis_admin/app/utils/msg.utils.dart';
-import 'package:cinepolis_admin/app/widgets/app_bar/simple_app_bar/simple_app_bar.widget.dart';
 import 'package:cinepolis_admin/app/widgets/progress/progress.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'main.controller.dart';
-import 'package:flutter/services.dart';
+import 'package:curved_drawer_fork/curved_drawer_fork.dart';
 
 class MainPage extends GetView<MainController> {
   const MainPage({Key? key}) : super(key: key);
@@ -14,18 +12,20 @@ class MainPage extends GetView<MainController> {
   Widget build(BuildContext context) {
     return Obx(() => controller.loading.value
         ? const ProgressPrimary()
-        :Scaffold(
-          appBar: SimpleAppBar(
-              title: "Bienvenido ${controller.profile.first.nombres}"),
-          body: WillPopScope(
-              onWillPop: () =>
-                  MsgUtils.exit(
-                      context,
-                      "¿Seguro quieres cerrar la app?",
-                          () =>
-                          SystemChannels.platform
-                              .invokeMethod('SystemNavigator.pop')),
-              child: const HomePage()))
-    );
+        : Scaffold(
+            appBar: AppBar(),
+            drawer: CurvedDrawer(
+                index: controller.selectedIndex.value,
+                width: 70,
+                color: Colors.black,
+                buttonBackgroundColor: Colors.blue[900]!,
+                labelColor: Colors.white,
+                items: controller.drawerItems,
+                onTap: (newIndex) {
+                  controller.selectedIndex.value = newIndex;
+                  controller.searchPage(newIndex, context);
+                }),
+            body: const HomePage(),
+          ));
   }
 }
