@@ -1,10 +1,9 @@
+import 'package:cinepolis_admin/app/pages/assigment_branch/assigment_branch.page.dart';
 import 'package:cinepolis_admin/app/pages/login/login.page.dart';
 import 'package:cinepolis_admin/app/pages/main/main.page.dart';
-import 'package:cinepolis_admin/app/pages/movies/add/movies.add.controller.dart';
 import 'package:cinepolis_admin/app/pages/movies/add/movies.add.page.dart';
 import 'package:cinepolis_admin/app/pages/movies/edit/movies.edit.page.dart';
 import 'package:cinepolis_admin/app/pages/movies/movies.page.dart';
-import 'package:cinepolis_admin/app/pages/profile/profile.page.dart';
 import 'package:cinepolis_admin/app/pages/splash/splash.page.dart';
 import 'package:cinepolis_admin/core/routes/bindings.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.api.service.dart';
@@ -12,7 +11,6 @@ import 'package:cinepolis_admin/data/services/employees/user.api.service.dart';
 import 'package:cinepolis_admin/data/services/filemanager/file_manager.api.service.dart';
 import 'package:cinepolis_admin/data/services/movies/movies.api.service.dart';
 import 'package:get/get.dart';
-
 part 'routes.dart';
 
 abstract class Pages {
@@ -35,10 +33,6 @@ abstract class Pages {
         page: () => const MainPage(),
         binding: MainBinding(authService, employeeService)),
     GetPage(
-        name: Routes.profile,
-        page: () => const ProfilePage(),
-        binding: ProfileBinding(authService, employeeService)),
-    GetPage(
         name: Routes.movies,
         page: () => const MoviesPage(),
         binding: MoviesBinding(moviesService)),
@@ -49,6 +43,10 @@ abstract class Pages {
     GetPage(
         name: Routes.moviesEdit,
         page: () => const MoviesEditPage(),
-        binding: MoviesEditBinding(moviesService))
+        binding: MoviesEditBinding(moviesService)),
+    GetPage(
+        name: Routes.assignment,
+        page: () => const AssignmentBranchPage(),
+        binding: AssignmentBinding(moviesService))
   ];
 }

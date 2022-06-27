@@ -47,8 +47,4 @@ class HomeController extends GetxController {
     var date = formatter.format(DateTime.now());
     return date;
   }
-
-  goToProfile() {
-    Get.toNamed(Routes.profile);
-  }
 }

@@ -25,14 +25,10 @@ class MainController extends GetxController {
 
   final List<DrawerItem> drawerItems = <DrawerItem>[
     const DrawerItem(icon: Icon(Icons.home_outlined), label: "Inicio"),
-    const DrawerItem(
-        icon: Icon(Icons.movie_creation_outlined), label: "Peliculas"),
-    const DrawerItem(
-        icon: Icon(Icons.production_quantity_limits_outlined),
-        label: "Productos"),
-    const DrawerItem(icon: Icon(Icons.person), label: "Perfil"),
-    const DrawerItem(
-        icon: Icon(Icons.exit_to_app_rounded), label: "Cerrar Sesión")
+    const DrawerItem(icon: Icon(Icons.movie_creation_outlined), label: "Peliculas"),
+    const DrawerItem(icon:Icon(Icons.store),label: "Asignación"),
+    const DrawerItem(icon: Icon(Icons.production_quantity_limits_outlined), label: "Productos"),
+    const DrawerItem(icon: Icon(Icons.exit_to_app_rounded), label: "Cerrar Sesión")
   ];
 
   MainController(this._service, this._employeeService);
@@ -49,8 +45,6 @@ class MainController extends GetxController {
       return SnackUtils.error(error.toString(), "Error");
     });
   }
-
-  goToProfile() => Get.toNamed(Routes.profile);
 
   singOut(BuildContext context) {
     MsgUtils.confirm(context, "¿Seguro Quieres Cerrar Sesión?", () {
@@ -69,9 +63,10 @@ class MainController extends GetxController {
         Get.toNamed(Routes.movies);
         break;
       case 2:
+        Get.toNamed(Routes.assignment);
         break;
       case 3:
-        Get.toNamed(Routes.profile);
+        Get.toNamed(Routes.movies);
         break;
       case 4:
         singOut(context);

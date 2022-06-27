@@ -1,13 +1,15 @@
+import 'package:cinepolis_admin/app/pages/assigment_branch/assigment_branch.controller.dart';
 import 'package:cinepolis_admin/app/pages/login/login.controller.dart';
 import 'package:cinepolis_admin/app/pages/main/home/home.controller.dart';
 import 'package:cinepolis_admin/app/pages/main/main.controller.dart';
 import 'package:cinepolis_admin/app/pages/movies/add/movies.add.controller.dart';
 import 'package:cinepolis_admin/app/pages/movies/edit/movies.edit.controller.dart';
 import 'package:cinepolis_admin/app/pages/movies/movies.controller.dart';
-import 'package:cinepolis_admin/app/pages/profile/profile.controller.dart';
 import 'package:cinepolis_admin/app/pages/splash/splash.controller.dart';
+import 'package:cinepolis_admin/data/services/assigment/assignment.api.service.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.contract.dart';
 import 'package:cinepolis_admin/data/services/employees/user.contract.dart';
+import 'package:cinepolis_admin/data/services/movies/movies.api.service.dart';
 import 'package:cinepolis_admin/data/services/movies/movies.contract.dart';
 import 'package:get/get.dart';
 
@@ -44,19 +46,6 @@ class MainBinding implements Bindings {
   }
 }
 
-class ProfileBinding implements Bindings {
-  final IAuthService authService;
-  final IUserService employeeService;
-
-  ProfileBinding(this.authService, this.employeeService);
-
-  @override
-  void dependencies() {
-    Get.lazyPut<ProfileController>(
-        () => ProfileController(authService, employeeService));
-  }
-}
-
 class MoviesBinding implements Bindings {
   final IMoviesService moviesService;
 
@@ -88,5 +77,17 @@ class MoviesEditBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<MoviesEditController>(
         () => MoviesEditController(moviesService));
+  }
+}
+
+
+class AssignmentBinding implements Bindings {
+  final IMoviesService moviesService;
+
+  AssignmentBinding(this.moviesService);
+
+  @override
+  void dependencies() {
+    Get.lazyPut<AssignmentBranchController>(() => AssignmentBranchController(AssignmentApiService(),MoviesApiService()));
   }
 }

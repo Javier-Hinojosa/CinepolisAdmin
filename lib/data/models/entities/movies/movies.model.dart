@@ -1,15 +1,3 @@
-// To parse this JSON data, do
-//
-//     final moviesModel = moviesModelFromJson(jsonString);
-
-import 'dart:convert';
-
-List<MoviesModel> moviesModelFromJson(String str) => List<MoviesModel>.from(
-    json.decode(str).map((x) => MoviesModel.fromJson(x)));
-
-String moviesModelToJson(List<MoviesModel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class MoviesModel {
   MoviesModel({
     this.id,

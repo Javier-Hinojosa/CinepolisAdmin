@@ -20,7 +20,8 @@ class AuthApiService extends BaseService implements IAuthService {
           RequestMethod.post, '$ssoUrl/OAuth/Token',
           useDefaultUrl: false,
           body:
-              'username=$username&password=$password&grant_type=password&scope=pTUOcr01wJjbFTdRBDmRcA==');
+              'username=$username&password=$password&grant_type=password&scope=pTUOcr01wJjbFTdRBDmRcA==').onError((error, stackTrace) =>
+          print(error));
 
       // Save token in local storage
       LocalStorageUtils.setStringKey(Globals.tokenKey,
