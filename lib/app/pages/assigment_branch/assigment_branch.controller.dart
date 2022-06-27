@@ -55,9 +55,6 @@ final FormGroup formAssets = FormGroup({
 
   _getSchedules()async{
     horarios.value= await  _assignmentService.getSchedules();
-    horarios.forEach((element) {
-      print(element.toJson());
-    });
   }
 
   _getSalas(int branchId)async{
