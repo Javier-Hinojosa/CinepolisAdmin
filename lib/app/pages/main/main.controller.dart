@@ -2,7 +2,6 @@ import 'package:cinepolis_admin/app/utils/msg.utils.dart';
 import 'package:cinepolis_admin/app/utils/sign_out.utils.dart';
 import 'package:cinepolis_admin/app/utils/storage.utils.dart';
 import 'package:cinepolis_admin/core/routes/pages.dart';
-import 'package:cinepolis_admin/core/values/enviroments.dart';
 import 'package:cinepolis_admin/core/values/globals.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.contract.dart';
 import 'package:curved_drawer_fork/curved_drawer_fork.dart';
@@ -11,8 +10,6 @@ import 'package:get/get.dart';
 
 class MainController extends GetxController {
   late final IAuthService _service;
-
-  static const String imagesUrl = Environments.imageUrl;
 
   var loading = true.obs;
   var selectedPageIndex = 0.obs;
