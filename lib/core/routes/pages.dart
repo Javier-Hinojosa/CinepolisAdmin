@@ -7,16 +7,12 @@ import 'package:cinepolis_admin/app/pages/movies/movies.page.dart';
 import 'package:cinepolis_admin/app/pages/splash/splash.page.dart';
 import 'package:cinepolis_admin/core/routes/bindings.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.api.service.dart';
-import 'package:cinepolis_admin/data/services/employees/user.api.service.dart';
-import 'package:cinepolis_admin/data/services/filemanager/file_manager.api.service.dart';
 import 'package:cinepolis_admin/data/services/movies/movies.api.service.dart';
 import 'package:get/get.dart';
 part 'routes.dart';
 
-abstract class Pages {
+abstract class Pages {//enlazan el o los controladores que seran usadore en la page, se le es nombrada y se pone la page con la que va a iniciar al llamar a esa ruta
   static final authService = AuthApiService();
-  static final employeeService = UserApiService();
-  static final fileManagerService = FileManagerApiService();
   static final moviesService = MoviesApiService();
 
   static final pages = [
@@ -31,7 +27,7 @@ abstract class Pages {
     GetPage(
         name: Routes.main,
         page: () => const MainPage(),
-        binding: MainBinding(authService, employeeService)),
+        binding: MainBinding(authService)),
     GetPage(
         name: Routes.movies,
         page: () => const MoviesPage(),

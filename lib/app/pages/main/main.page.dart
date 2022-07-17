@@ -15,14 +15,14 @@ class MainPage extends GetView<MainController> {
         : Scaffold(
             appBar: AppBar(),
             drawer: CurvedDrawer(
-                index: controller.selectedIndex.value,
+                index: controller.selectedPageIndex.value,
                 width: 70,
                 color: Colors.black,
                 buttonBackgroundColor: Colors.blue[900]!,
                 labelColor: Colors.white,
                 items: controller.drawerItems,
                 onTap: (newIndex) {
-                  controller.selectedIndex.value = newIndex;
+                  controller.selectedPageIndex.value = newIndex;
                   controller.searchPage(newIndex, context);
                 }),
             body: const HomePage(),

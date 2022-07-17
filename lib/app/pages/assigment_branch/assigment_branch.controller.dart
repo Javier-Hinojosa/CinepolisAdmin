@@ -44,7 +44,7 @@ final FormGroup formAssets = FormGroup({
     await _getSchedules();
     movies.value=await _moviesService.getMovies();
     selectMovieId.value=movies.first.id!;
-     await _assignmentService.getBranches().then((value) async {
+     await _assignmentService.getBranches().then((value) async {//va por las sucursales disponibles para despues guardarlas en un listado para una lista desplegable, se debe iniciarlizar la seleccion actual para que funcione.
       branches=value;
       selectBranchId.value=branches.first.id!;
      await  _getSalas(value.first.id!);
@@ -61,7 +61,7 @@ final FormGroup formAssets = FormGroup({
   salas.clear();
    await _assignmentService.getSalas(branchId)
        .then((value) {
-   if(value.isNotEmpty) salas=value;
+   if(value.isNotEmpty) salas=value;//al obtener la sucursal seleccionada este servicio trae las salas disponibles de cada sucursal, en algunos casos la sucursal no cuenta con salas, por lo que es necesario poner un vacio
    else salas.add(SalasModel.fromVoid());
 
        })
@@ -117,6 +117,7 @@ final FormGroup formAssets = FormGroup({
     await _getSchedules();
   }
 
+  //etos metodos funcionan como para cambiar la seleccion de alguna lista desplegable, tabla, hora etc. esto en algunas otras clases debera de volver a consumir el servicio para optener información nueva.
   onDateChange(DateTime date) {
   insertDate.value=date;
   }

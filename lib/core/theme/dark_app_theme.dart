@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final ThemeData darkAppTheme = ThemeData(
+final ThemeData darkAppTheme = ThemeData(//desde esta configuración se encarga de los colores de la aplicación
   // Define the default brightness and colors.
   brightness: Brightness.dark,
   primaryColor: const Color.fromRGBO(32, 54, 107, 1),

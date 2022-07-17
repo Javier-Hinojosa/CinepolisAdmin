@@ -8,11 +8,11 @@ import 'package:cinepolis_admin/app/pages/movies/movies.controller.dart';
 import 'package:cinepolis_admin/app/pages/splash/splash.controller.dart';
 import 'package:cinepolis_admin/data/services/assigment/assignment.api.service.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.contract.dart';
-import 'package:cinepolis_admin/data/services/employees/user.contract.dart';
 import 'package:cinepolis_admin/data/services/movies/movies.api.service.dart';
 import 'package:cinepolis_admin/data/services/movies/movies.contract.dart';
 import 'package:get/get.dart';
 
+//inyectan los servicios a los controladores para poder obtener su información
 class SplashBinding implements Bindings {
   final IAuthService authService;
   SplashBinding(this.authService);
@@ -35,13 +35,12 @@ class LoginBinding implements Bindings {
 
 class MainBinding implements Bindings {
   final IAuthService authService;
-  final IUserService employeeService;
 
-  MainBinding(this.authService, this.employeeService);
+  MainBinding(this.authService);
 
   @override
   void dependencies() {
-    Get.lazyPut(() => MainController(authService, employeeService));
+    Get.lazyPut(() => MainController(authService));
     Get.lazyPut(() => HomeController(authService));
   }
 }

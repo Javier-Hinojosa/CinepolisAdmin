@@ -31,7 +31,7 @@ class SplashController extends GetxController {
   fadeIn() {
     nameCorporation.value = 'Cargando...';
     fadeText.value = true;
-    return Timer(duration, checkLoginUser);
+    return Timer(duration, checkLoginUser);//revisa si existe un usuario registrado actualmente en la aplicación, de lo contrario entonces lo envia al Login
   }
 
   checkLoginUser() async {

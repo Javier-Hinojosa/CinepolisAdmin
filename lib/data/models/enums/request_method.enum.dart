@@ -1,1 +1,1 @@
-enum RequestMethod { get, post, put, patch, delete }
+enum RequestMethod { get, post, put, patch, delete }//los tipos de metodos de respuesta usados para poder consumir un endpoint

@@ -11,7 +11,7 @@ class MoviesAddController extends GetxController {
 
   var loading = false.obs;
 
-  var formMovie = FormGroup({
+  var formMovie = FormGroup({//formulario de lo que se debe de pedir para poder crear una pelicula
     'nombre': FormControl<String>(validators: [Validators.required], value: ''),
     'categoria':
         FormControl<String>(validators: [Validators.required], value: ''),
@@ -36,7 +36,7 @@ class MoviesAddController extends GetxController {
   MoviesAddController(this._moviesService);
 
   save() async {
-    if (formMovie.value.valid) {
+    if (formMovie.value.valid) {//valida que los datos no esten vacios y si no lo estan los guarda en un modelos con el cual se le enviaran esos datos a la base
       loading.value = true;
 
       var model = MoviesModel(

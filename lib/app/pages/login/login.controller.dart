@@ -12,9 +12,6 @@ class LoginController extends GetxController {
   var duration = const Duration(seconds: 2);
   var rondButton = RoundedLoadingButtonController().obs;
 
-  //var username = TextEditingController(text: 'ediaz@esperanza.mx'); // SUPERVISOR
-  // var username = TextEditingController(text: 'jcarballido@sethemba.mx'); // EMPLEADO 201
-  //var username = TextEditingController(text: 'orocha@esperanza.mx'); // GERENTE 601
   var username = TextEditingController(text: '').obs;
   var password = TextEditingController(text: '').obs;
 

@@ -10,10 +10,8 @@ import 'package:cinepolis_admin/data/models/enums/request_method.enum.dart';
 import 'package:cinepolis_admin/data/providers/api_exceptions.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:mime/mime.dart';
-import 'package:http_parser/http_parser.dart';
 
-class ApiProvider {
+class ApiProvider {//al consumirse un endpoint, esta clase se encarga de revisar que tipo es, descifra los datos y los pasa a la entidad, en caso contrario si hay una excepcion, la muestra como error etc...
   // Singleton
   ApiProvider._privateConstructor();
   static final ApiProvider _instance = ApiProvider._privateConstructor();
@@ -112,23 +110,5 @@ class ApiProvider {
         throw FetchDataException(
             'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
     }
-  }
-
-  Future<dynamic> uploadFile(String endpoint, String path) async {
-    var postUri = Uri.parse(endpoint);
-    var request = http.MultipartRequest("POST", postUri);
-    var file = File.fromUri(Uri.parse(path));
-    var fileName = file.path.split("/").last;
-    var mimeType = lookupMimeType(file.path)!.split("/");
-    var mediaType = MediaType(mimeType[0], mimeType[1]);
-    request.files.add(http.MultipartFile.fromBytes(
-        'addFiles', await file.readAsBytes(),
-        filename: fileName, contentType: mediaType));
-
-    return request.send().then((result) {
-      return http.Response.fromStream(result).then((response) {
-        return _returnResponse(response, false);
-      });
-    });
   }
 }

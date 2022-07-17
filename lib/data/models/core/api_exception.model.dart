@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-ApiException apiExceptionFromJson(String str) =>
+ApiException apiExceptionFromJson(String str) =>//encargado de mostrar las excepciones en formato que pueda ser optenido para la aplicación
     ApiException.fromJson(json.decode(str));
 
 String apiExceptionToJson(ApiException data) => json.encode(data.toJson());
@@ -20,15 +20,9 @@ class ApiException {
 
   factory ApiException.fromJson(Map<String, dynamic> json) => ApiException(
         message: json["message"] == null ? json["message"] : json["Message"],
-        exceptionMessage: json["exceptionMessage"] != null
-            ? json["exceptionMessage"]
-            : json["ExceptionMessage"],
-        exceptionType: json["exceptionType"] != null
-            ? json["exceptionType"]
-            : json["ExceptionType"],
-        stackTrace: json["stackTrace"] != null
-            ? json["stackTrace"]
-            : json["StackTrace"],
+        exceptionMessage: json["exceptionMessage"] ?? json["ExceptionMessage"],
+        exceptionType: json["exceptionType"] ?? json["ExceptionType"],
+        stackTrace: json["stackTrace"] ?? json["StackTrace"],
       );
 
   Map<String, dynamic> toJson() => {

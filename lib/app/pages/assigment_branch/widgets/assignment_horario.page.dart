@@ -96,7 +96,7 @@ class AssignmentHorario extends GetView<AssignmentBranchController>{
                         onPressed: () => controller.onEdit(id),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Expanded(
                       flex: 500,
                       child: CustomButtonLarge(

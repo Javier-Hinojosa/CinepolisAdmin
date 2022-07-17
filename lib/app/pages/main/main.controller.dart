@@ -4,24 +4,18 @@ import 'package:cinepolis_admin/app/utils/storage.utils.dart';
 import 'package:cinepolis_admin/core/routes/pages.dart';
 import 'package:cinepolis_admin/core/values/enviroments.dart';
 import 'package:cinepolis_admin/core/values/globals.dart';
-import 'package:cinepolis_admin/data/models/entities/dynamic/dynamic_response.model.dart';
-import 'package:cinepolis_admin/data/models/entities/users/user_detail.model.dart';
 import 'package:cinepolis_admin/data/services/auth/auth.contract.dart';
-import 'package:cinepolis_admin/data/services/employees/user.contract.dart';
 import 'package:curved_drawer_fork/curved_drawer_fork.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController {
   late final IAuthService _service;
-  late final IUserService _employeeService;
 
   static const String imagesUrl = Environments.imageUrl;
-  var profile = <UserDetail>[].obs;
-  var response = DynamicResponse.fromVoid().obs;
 
   var loading = true.obs;
-  var selectedIndex = 0.obs;
+  var selectedPageIndex = 0.obs;
 
   final List<DrawerItem> drawerItems = <DrawerItem>[
     const DrawerItem(icon: Icon(Icons.home_outlined), label: "Inicio"),
@@ -31,14 +25,12 @@ class MainController extends GetxController {
     const DrawerItem(icon: Icon(Icons.exit_to_app_rounded), label: "Cerrar Sesión")
   ];
 
-  MainController(this._service, this._employeeService);
+  MainController(this._service);
 
   @override
   void onInit() async {
     super.onInit();
-    await _service.checkUser().then((existingUser) async {
-      profile.value = await _employeeService
-          .getProfile(int.tryParse(existingUser!.code) ?? 0);
+    await _service.checkUser().then((existingUser) async {//trae los datos del usuario guardado actualmente, si es que no los conoce, lo regresa al Login en donde podra iniciar sesión.
       loading.value = false;
     }).onError((error, stackTrace) async {
       SignOut();
@@ -46,7 +38,7 @@ class MainController extends GetxController {
     });
   }
 
-  singOut(BuildContext context) {
+  _onSingOut(BuildContext context) {
     MsgUtils.confirm(context, "¿Seguro Quieres Cerrar Sesión?", () {
       Get.offAllNamed(Routes.login);
 
@@ -69,7 +61,7 @@ class MainController extends GetxController {
         Get.toNamed(Routes.movies);
         break;
       case 4:
-        singOut(context);
+        _onSingOut(context);
         break;
     }
   }
